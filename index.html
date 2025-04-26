@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOT Wheels</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function addtoc(){
+            alert("Item added to cart successfully!");
+        }
+        
+        $(document).ready(function() {
+
+            $("body").css("background", "linear-gradient(to bottom, #add8e6, #87cefa, #b0e0e6)");
+
+            // Newsletter form submission
+            $("#newsletter-form").submit(function(e) {
+            e.preventDefault();
+            alert("Thank you for subscribing to our newsletter!");
+            this.reset();
+            });
+        });
+    </script>
+</head>
+<body>
+    <a href="index.html" class="logo-container">
+        <img src="images/hwlogo.png" alt="HOT Wheels Logo" class="logo">
+    </a>
+    <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: linear-gradient(to right, #8b0000, #b22222);
+            height: 70px;
+            border-radius: 12px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            border: 2px solid #7a0000;
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <nav>
+        <a href="#shop">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contactUs.html">Contact</a>
+        <a href="coupon-game.html">Win Coupons</a>
+        <div class="cart-icon" onclick="toggleCart()">🛒 <span class="cart-count">0</span></div>
+    </nav>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">×</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <h4>Total: ₹<span id="cart-total-amount">0</span></h4>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <div class="sale-banner" style="background-image: url('/images/wp1.jpg'); background-size: cover; background-position: center;">
+        <div class="sale-text">
+            <h2>THE WINTER SALE</h2>
+            <p>NOW THRU 12/25</p>
+            <p>25% OFF EVERYTHING</p>
+            <a href="#shop"><button>SHOP NOW</button></a>
+        </div>
+        <div class="sale-images">
+            <img src="images/jp1.jpg" alt="Car Collection">
+            <img src="images/jp2.jpg" alt="Car Collection">
+            <img src="images/jp3.jpg" alt="Car Collection">
+            <img src="images/jp4.jpg" alt="Car Collection">
+            <img src="images/jp5.jpg" alt="Car Collection">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product" id="shop">
+            <img src="images/jp1.jpg" alt="Die-cast vehicle">
+            <h3>Die-cast vehicle</h3>
+
+            <p>₹899</p>
+            <button onclick="addtoc('Die-cast vehicle', 899)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp2.jpg" alt="Monster Truck">
+            <h3>Monster Truck</h3>
+
+            <p>₹299</p>
+            <button onclick="addtoc('Monster Truck', 299)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp3.jpg" alt="RC Cars">
+            <h3>RC Cars</h3>
+
+            <p>₹399</p>
+            <button onclick="addtoc('RC Cars', 399)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp4.jpg" alt="top picks">
+            <h3>top picks</h3>
+
+            <p>₹199</p>
+            <button onclick="addtoc('top picks', 199)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp5.jpg" alt="Collector">
+            <h3>Collector</h3>
+
+            <p>₹399</p>
+            <button onclick="addtoc('Collector', 399)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp7.jpg" alt="Gold Bangles">
+            <h3>Gold Bangles</h3>
+
+            <p>₹399</p>
+            <button onclick="addtoc('Gold Bangles', 399)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp7.jpg" alt="Gold Bangles">
+            <h3>Gold Bangles</h3>
+
+            <p>₹399</p>
+            <button onclick="addtoc('Gold Bangles', 399)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="images/jp7.jpg" alt="Gold Bangles">
+            <h3>Gold Bangles</h3>
+
+            <p>₹399</p>
+            <button onclick="addtoc('Gold Bangles', 399)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get updates about new products and special offers!</p>
+        <form id="newsletter-form" class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <div class="order">
+        <a href="order.html">PLACE ORDER</a>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        function addtoc(productName, price) {
+            cart.push({ name: productName, price: price });
+            updateCart();
+            alert("Item added to cart successfully!");
+        }
+
+        function updateCart() {
+            const cartItems = document.querySelector('.cart-items');
+            const cartCount = document.querySelector('.cart-count');
+            const cartTotalAmount = document.getElementById('cart-total-amount');
+            
+            cartItems.innerHTML = '';
+            cartTotal = 0;
+            
+            cart.forEach((item, index) => {
+                cartTotal += item.price;
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">₹${item.price}</div>
+                        </div>
+                        <button onclick="removeFromCart(${index})">×</button>
+                    </div>
+                `;
+            });
+            
+            cartCount.textContent = cart.length;
+            cartTotalAmount.textContent = cartTotal;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            alert("Thank you for your purchase! Total: ₹" + cartTotal);
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>

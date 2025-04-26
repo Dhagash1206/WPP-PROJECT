@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AQAMA GOLD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            background: linear-gradient(to bottom, #add8e6, #87cefa, #b0e0e6);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #273247;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background-color: #6b7a8f;
+        }
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            width: 30%;
+            background: #1d2739;
+            color: white;
+            padding: 20px;
+        }
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .sidebar p {
+            font-size: 14px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+        .content h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #1d2739;
+        }
+        .content p {
+            font-size: 16px;
+            color: #1d2739;
+            line-height: 1.6;
+        }
+        .contact-info {
+            margin-top: 15px;
+        }
+        .contact-info p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #1d2739;
+        }
+        .contact-info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #222;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        .contact-form label {
+            display: block;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #222;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #008000;
+            outline: none;
+        }
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        .contact-form button {
+            margin-top: 15px;
+            background: #008000;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .contact-form button:hover {
+            background: #006600;
+        }
+    </style>
+</head>
+<body>
+    <header>AQAMA GOLD</header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#shop">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contactUs.html">Contact</a>
+        <a href="coupon-game.html">Win Coupons</a>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Details -->
+        <div class="sidebar">
+            <h3>Customer Service</h3>
+            <p>Available from 8 AM - 8 PM, 7 days a week.</p>
+            
+            <h3>Shipping & Returns</h3>
+            <p>For questions about orders, shipping, or returns, please contact us.</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need assistance, feel free to reach out to us. We're here to help!</p>
+
+            <div class="contact-info">
+                <p><strong>Text Us:</strong> 999-111-9082 (Messaging rates may apply)</p>
+                <p><strong>Email Us:</strong> <a href="mailto:support@aqamagold.com">support@aqamagold.com</a></p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form onsubmit="return validateForm()">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                    <div class="error" id="nameError"></div>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                    <div class="error" id="emailError"></div>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                    <div class="error" id="messageError"></div>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            let nameError = document.getElementById("nameError");
+            let emailError = document.getElementById("emailError");
+            let messageError = document.getElementById("messageError");
+
+            nameError.innerHTML = "";
+            emailError.innerHTML = "";
+            messageError.innerHTML = "";
+
+            if (name === "") {
+                nameError.innerHTML = "Name is required.";
+                isValid = false;
+            } else if (name.length < 3) {
+                nameError.innerHTML = "Name must be at least 3 characters.";
+                isValid = false;
+            }
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (email === "") {
+                emailError.innerHTML = "Email is required.";
+                isValid = false;
+            } else if (!email.match(emailPattern)) {
+                emailError.innerHTML = "Enter a valid email address.";
+                isValid = false;
+            }
+
+            if (message === "") {
+                messageError.innerHTML = "Message cannot be empty.";
+                isValid = false;
+            } else if (message.length < 10) {
+                messageError.innerHTML = "Message should be at least 10 characters.";
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Thank you for your message! We'll get back to you soon.");
+                document.querySelector('form').reset();
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
